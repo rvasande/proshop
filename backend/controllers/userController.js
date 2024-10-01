@@ -38,6 +38,11 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("user already exits");
   }
 
+  if(password.length < 8){
+    res.status(400)
+    throw new Error('password must be at least 8 characters')
+  }
+
   const user = await User.create({
     name,
     email,
